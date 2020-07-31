@@ -33,14 +33,10 @@ public class PowerUp : MonoBehaviour
                 else if (powerupID == 2)
                 {
                     //  enable shield
-                    player.isSheildPower = true;
+                    player.StartSheildPowerUp();
                 }
-
             }
-
-
             Destroy(this.gameObject);
         }
-      
     }
 }
