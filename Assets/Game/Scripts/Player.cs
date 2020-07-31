@@ -19,6 +19,9 @@ public class Player : MonoBehaviour
     private GameObject _laserPrefab;
 
     [SerializeField]
+    private GameObject _shieldGameObject;
+
+    [SerializeField]
     private GameObject _tripleShoot;
 
     [SerializeField]
@@ -104,6 +107,7 @@ public class Player : MonoBehaviour
         if (isSheildPower)
         {
             isSheildPower = false;
+            _shieldGameObject.SetActive(false);
             return;
         }
         else
@@ -143,12 +147,14 @@ public class Player : MonoBehaviour
     public IEnumerator SheildPowerUP()
     {
         yield return new WaitForSeconds(5.0f);
+        _shieldGameObject.SetActive(false);
         isSheildPower = false;
     }
 
     public void StartSheildPowerUp()
     {
         isSheildPower = true;
+        _shieldGameObject.SetActive(true);
         StartCoroutine(SheildPowerUP());
     }
 }
