@@ -34,7 +34,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (other.tag == "laser")
         {
-            if (other.transform.parent!= null)
+            if (other.transform.parent != null)
             {
                 Destroy(other.transform.parent.gameObject);
             }

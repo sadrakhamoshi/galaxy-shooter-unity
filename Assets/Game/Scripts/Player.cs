@@ -103,7 +103,8 @@ public class Player : MonoBehaviour
 
         if (isSheildPower)
         {
-
+            isSheildPower = false;
+            return;
         }
         else
         {
@@ -119,23 +120,18 @@ public class Player : MonoBehaviour
     public void StartPowerUpTripleShoot()
     {
         canTripleShoot = true;
-        Debug.Log("Helo");
-        StartCoroutine(PowerUpDelay());
-        Debug.Log("1");
-        Debug.Log("2");
-        Debug.Log("3");
+        StartCoroutine(TriplePowerUpDelay());
+    }
+    public IEnumerator TriplePowerUpDelay()
+    {
+        //wait 5 seconds and then do the rest
+        yield return new WaitForSeconds(5.0f);
+        canTripleShoot = false;
     }
     public void StartSpeedPowrUp()
     {
         isSpeedUpPower = true;
         StartCoroutine(PowerUpSpeedDelay());
-    }
-
-    public IEnumerator PowerUpDelay()
-    {
-        //wait 5 seconds and then do the rest
-        yield return new WaitForSeconds(5.0f);
-        canTripleShoot = false;
     }
 
     public IEnumerator PowerUpSpeedDelay()
