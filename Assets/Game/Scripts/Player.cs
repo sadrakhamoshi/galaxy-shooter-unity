@@ -9,6 +9,11 @@ public class Player : MonoBehaviour
 
     public int _live = 3;
 
+    public int hurtCount = 0;
+
+    [SerializeField]
+    private GameObject[] _engines;
+
     public bool isSpeedUpPower;
 
     public bool isSheildPower;
@@ -43,9 +48,11 @@ public class Player : MonoBehaviour
 
     private SpawnManager spawn;
 
+    private AudioSource _backSound;
 
     void Start()
     {
+        hurtCount = 0;
         //set position
         //variable with tag or drag in unity editor
         //laserPrefab = GameObject.Find("laser");
@@ -55,6 +62,8 @@ public class Player : MonoBehaviour
         _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
         spawn = GameObject.Find("Spawn_object").GetComponent<SpawnManager>();
+
+        _backSound = this.GetComponent<AudioSource>();
 
         if (_displayLive != null)
         {
@@ -79,6 +88,8 @@ public class Player : MonoBehaviour
 
     private void Shoot()
     {
+        _backSound.Play();
+
         if (Time.time > nextFire)
         {
             if (canTripleShoot)
@@ -134,6 +145,9 @@ public class Player : MonoBehaviour
         else
         {
             _live--;
+            hurtCount++;
+            turnOnHurtEngines(hurtCount);
+
             _displayLive.UpdateLives(_live);
             if (_live < 1)
             {
@@ -142,6 +156,18 @@ public class Player : MonoBehaviour
                 Instantiate(_explosion, transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
             }
+        }
+    }
+
+    public void turnOnHurtEngines(int hurtCount)
+    {
+        if (hurtCount == 1)
+        {
+            _engines[0].SetActive(true);
+        }
+        if (hurtCount == 2)
+        {
+            _engines[1].SetActive(true);
         }
     }
 
