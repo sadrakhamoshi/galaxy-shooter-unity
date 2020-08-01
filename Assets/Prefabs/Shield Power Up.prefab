@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5339698450110889247}
   - component: {fileID: 2726848484038566533}
   - component: {fileID: -94930678316677567}
+  - component: {fileID: 1851976704}
   m_Layer: 0
   m_Name: Shield Power Up
   m_TagString: Untagged
@@ -97,6 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 2
   powerupID: 2
+  _powerUp: {fileID: 8300000, guid: 5ee343246919d2b4bba63ae629e95494, type: 3}
 --- !u!58 &-94930678316677567
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -113,3 +115,22 @@ CircleCollider2D:
   m_Offset: {x: 0.1034977, y: -0.062195458}
   serializedVersion: 2
   m_Radius: 1.1403984
+--- !u!95 &1851976704
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6702399614949220798}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7ab028f4f1fe7e146be4e51d75b61ab3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

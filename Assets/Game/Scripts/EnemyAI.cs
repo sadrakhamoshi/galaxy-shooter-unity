@@ -16,6 +16,9 @@ public class EnemyAI : MonoBehaviour
     [SerializeField]
     private UiManager _displayScore;
 
+    [SerializeField]
+    private AudioClip _clip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +54,8 @@ public class EnemyAI : MonoBehaviour
             player.Damage();
         }
         Instantiate(_enemyExplosion, transform.position, Quaternion.identity);
+        //transform.position is in background we should use main to ear it louder
+        AudioSource.PlayClipAtPoint(_clip, Camera.main.transform.position);
         Destroy(this.gameObject);
     }
 }
