@@ -39,6 +39,11 @@ public class Player : MonoBehaviour
     private UiManager _displayLive;
 
 
+    private GameManager _gameManager;
+
+    private SpawnManager spawn;
+
+
     void Start()
     {
         //set position
@@ -46,9 +51,18 @@ public class Player : MonoBehaviour
         //laserPrefab = GameObject.Find("laser");
         transform.position = new Vector3(0, 0, 0);
         _displayLive = GameObject.Find("Canvas").GetComponent<UiManager>();
+
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        spawn = GameObject.Find("Spawn_object").GetComponent<SpawnManager>();
+
         if (_displayLive != null)
         {
             _displayLive.UpdateLives(_live);
+        }
+        if (spawn != null)
+        {
+            spawn.StartQorountine();
         }
     }
 
@@ -123,6 +137,8 @@ public class Player : MonoBehaviour
             _displayLive.UpdateLives(_live);
             if (_live < 1)
             {
+                _gameManager.isGameOver = true;
+                _displayLive.ShowStartMen();
                 Instantiate(_explosion, transform.position, Quaternion.identity);
                 Destroy(this.gameObject);
             }

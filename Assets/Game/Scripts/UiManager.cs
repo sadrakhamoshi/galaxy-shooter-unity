@@ -11,13 +11,13 @@ public class UiManager : MonoBehaviour
 
     [SerializeField]
     private Image _startMenu;
+    
+    [SerializeField]
+    private Text displayScore;
 
     private const int enemyKillScore = 10;
     // we saved here becaues if saved in player after game object has been destroyed
     public int score;
-
-    [SerializeField]
-    private Text displayScore;
 
     public void UpdateLives(int currntLive)
     {
@@ -29,5 +29,14 @@ public class UiManager : MonoBehaviour
         displayScore.text = "Score : " + score;
     }
 
-    
+    public void HideStartMenu()
+    {
+        _startMenu.enabled = false;
+    }
+    public void ShowStartMen()
+    {
+        _startMenu.enabled = true;
+        displayScore.text = "Score : 0";
+        score = 0;
+    }
 }
