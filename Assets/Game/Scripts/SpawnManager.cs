@@ -10,27 +10,35 @@ public class SpawnManager : MonoBehaviour
     [SerializeField]
     private GameObject[] powerups;
 
+
+    public GameManager manager;
     void Start()
     {
-        StartCoroutine(waitForSpawnEnemy());
-        StartCoroutine(PowerUpSpawn());
+        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
-    IEnumerator waitForSpawnEnemy()
+    public IEnumerator waitForSpawnEnemy()
     {
-        while (true)
+        while (!manager.isGameOver)
         {
-            yield return new WaitForSeconds(5.0f);
             Instantiate(_enemyPrifabs, new Vector3(Random.Range(-8.6f, 8.6f), 7f, 0f), Quaternion.identity);
+
+            yield return new WaitForSeconds(5.0f);
         }
     }
 
-    IEnumerator PowerUpSpawn()
+    public IEnumerator waitForSpawnPowerUp()
     {
-        while (true)
+        while (!manager.isGameOver)
         {
             yield return new WaitForSeconds(5.0f);
             int randomPowerUp = Random.Range(0, 3);
             Instantiate(powerups[randomPowerUp], new Vector3(Random.Range(-8.6f, 8.6f), 7f, 0f), Quaternion.identity);
         }
+    }
+
+    public void StartQorountine()
+    {
+        StartCoroutine(waitForSpawnEnemy());
+        StartCoroutine(waitForSpawnPowerUp());
     }
 }

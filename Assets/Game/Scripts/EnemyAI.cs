@@ -13,9 +13,13 @@ public class EnemyAI : MonoBehaviour
     [SerializeField]
     private GameObject _enemyExplosion;
 
+    [SerializeField]
+    private UiManager _displayScore;
+
     // Start is called before the first frame update
     void Start()
     {
+        _displayScore = GameObject.Find("Canvas").GetComponent<UiManager>();
     }
 
     // Update is called once per frame
@@ -38,6 +42,7 @@ public class EnemyAI : MonoBehaviour
             {
                 Destroy(other.transform.parent.gameObject);
             }
+            _displayScore.UpdateScore();
             Destroy(other.gameObject);
         }
         else if (other.tag == "Player")
